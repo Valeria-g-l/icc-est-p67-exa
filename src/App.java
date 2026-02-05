@@ -6,36 +6,37 @@ import models.Pedido;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        // Crear la lista inicial de pedidos
-        /// CODE
-
-        // MÉTODO A: filtrarPorZona(List<Pedido>, int umbral)
-        // Debe devolver un Stack con los pedidos cuya zona sea MAYOR al umbral
-        // Recorre la lista de pedidos y añade al Stack solo aquellos que cumplan la
-        // condición
-        System.out.println("=== MÉTODO A: Filtrar por zona > 150 ===");
-        /// CODE
-
-        // MÉTODO B: ordenarPorZona(Stack<Pedido>)
-        // Debe devolver un Set (TreeSet) con los pedidos ordenados por zona ascendente
-        // El TreeSet debe usar un Comparator que compare los pedidos por su zona
-        // Importante: elimina duplicados basándose en cliente + zona
-        System.out.println("=== MÉTODO B: Ordenar por zona ===");
-        /// CODE
-
-        // MÉTODO C: agruparPorUrgencia(List<Pedido>)
-        // Debe devolver un TreeMap<Integer, Queue<Pedido>> donde:
-        // - La clave es el nivel de urgencia
-        // - El valor es una Queue (LinkedList) con todos los pedidos de esa urgencia
-        // Recorre todos los pedidos y agrúpalos según su urgencia
-        /// CODE
-
-        // MÉTODO D: explotarGrupo(TreeMap<Integer, Queue<Pedido>>)
-        // Debe encontrar el grupo (Queue) con MÁS pedidos del TreeMap
-        // Devolver un Stack con todos los pedidos de ese grupo más numeroso
-        // Recorre el TreeMap, encuentra la Queue más grande y pasa sus elementos al
-        // Stack
-        /// CODE
+         
+        List<Pedido> pedidos = crearPedidos();
+         PedidoController controller = new PedidoController();
+          
+         filtrarPorZona(List<Pedido>, int umbral) 
+         System.out.println("***** MÉTODO A: Filtrar por zona > 150 *****"); 
+         Stack<Pedido> filtrados = controller.filtrarPorZona(pedidos, 150);
+          for (Pedido p : filtrados) {
+             System.out.println(p); 
+             } 
+              
+        ordenarPorZona(Stack<Pedido>) 
+        System.out.println("******MÉTODO B: Ordenar por zona *****");
+         Set<Pedido> ordenados = controller.ordenarPorZona(filtrados);
+          for (Pedido p : ordenados) {
+             System.out.println(p); 
+             } 
+             
+         agruparPorUrgencia(List<Pedido>)
+          System.out.println("***** MÉTODO C: Agrupar por urgencia *****"); 
+          TreeMap<Integer, Queue<Pedido>> agrupados = controller.agruparPorUrgencia(pedidos); 
+          for (Map.Entry<Integer, Queue<Pedido>> entry : agrupados.entrySet()) {
+             System.out.println("Urgencia " + entry.getKey() + ": " + entry.getValue());
+             } 
+             
+        explotarGrupo(TreeMap<Integer, Queue<Pedido>>)
+         System.out.println("*****MÉTODO D: Explotar grupo más numeroso *****");
+          Stack<Pedido> grupoMayor = controller.explotarGrupo(agrupados);
+           for (Pedido p : grupoMayor) { 
+            System.out.println(p); 
+            }
 
     }
 
@@ -110,6 +111,9 @@ public class App {
                 new Pedido("Hector Cabrera", "28045-222", Arrays.asList(18, 21, 12, 6)), // zona=222, urgencia=102
                 new Pedido("Natalia Rios", "28045-248", Arrays.asList(12, 24, 18)) // zona=248, urgencia=108
         );
+        for(Pedido p : pedidos){
+            
+        }
 
         return pedidos;
     }
