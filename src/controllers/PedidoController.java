@@ -1,8 +1,7 @@
 package controllers;
 
-import models.Pedido;
-
 import java.util.*;
+import models.Pedido;
 
 public class PedidoController {
 
@@ -35,7 +34,7 @@ public class PedidoController {
         return mapa;
     }
 
-    public Stack<Pedido> explotarGrupo(TreeMap<Integer, Queue<Pedido>> mapa) {
+    public Stack<Pedido> explotarGrupo(Map<Integer,Queue<Pedido>> mapa) {
         int max = -1;
         int riesgoSel = -1;
         for (var e : mapa.entrySet()) {

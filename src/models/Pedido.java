@@ -15,17 +15,17 @@ public class Pedido {
         this.cliente = cliente;
         this.codigoPostal = codigoPostal;
         this.prioridades = prioridades;
-        this.zona = calcularZona();
-        this.urgencia = calcularUrgencia();
+        this.zona = validarCampoZona();
+        this.urgencia = validarCampoUrgencia();
     }
 
-    private int calcularZona() {
+    private int validarCampoZona() {
         
         String[] partes = codigoPostal.split("-");
         return Integer.parseInt(partes[1]);
     }
 
-    private int calcularUrgencia() {
+    private int validarCampoUrgencia() {
         int suma = 0;
         for (int p : prioridades) {
             if (p % 3 == 0) suma += p;

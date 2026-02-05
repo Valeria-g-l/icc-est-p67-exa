@@ -1,6 +1,11 @@
+import controllers.PedidoController;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.Stack;
+import java.util.TreeMap;
 import models.Pedido;
 
 public class App {
@@ -10,28 +15,29 @@ public class App {
         List<Pedido> pedidos = crearPedidos();
          PedidoController controller = new PedidoController();
           
-         filtrarPorZona(List<Pedido>, int umbral) 
+         
          System.out.println("***** MÉTODO A: Filtrar por zona > 150 *****"); 
          Stack<Pedido> filtrados = controller.filtrarPorZona(pedidos, 150);
           for (Pedido p : filtrados) {
              System.out.println(p); 
              } 
-              
-        ordenarPorZona(Stack<Pedido>) 
+        System.out.println();
+
         System.out.println("******MÉTODO B: Ordenar por zona *****");
          Set<Pedido> ordenados = controller.ordenarPorZona(filtrados);
           for (Pedido p : ordenados) {
              System.out.println(p); 
              } 
-             
-         agruparPorUrgencia(List<Pedido>)
+            
+        
+        System.out.println();
+        
           System.out.println("***** MÉTODO C: Agrupar por urgencia *****"); 
           TreeMap<Integer, Queue<Pedido>> agrupados = controller.agruparPorUrgencia(pedidos); 
           for (Map.Entry<Integer, Queue<Pedido>> entry : agrupados.entrySet()) {
              System.out.println("Urgencia " + entry.getKey() + ": " + entry.getValue());
              } 
              
-        explotarGrupo(TreeMap<Integer, Queue<Pedido>>)
          System.out.println("*****MÉTODO D: Explotar grupo más numeroso *****");
           Stack<Pedido> grupoMayor = controller.explotarGrupo(agrupados);
            for (Pedido p : grupoMayor) { 
@@ -112,7 +118,7 @@ public class App {
                 new Pedido("Natalia Rios", "28045-248", Arrays.asList(12, 24, 18)) // zona=248, urgencia=108
         );
         for(Pedido p : pedidos){
-            
+            System.out.println(p);
         }
 
         return pedidos;
